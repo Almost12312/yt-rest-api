@@ -2,9 +2,12 @@ package main
 
 import (
 	"flag"
+	"github.com/gorilla/mux"
+	"io"
 	"log"
+	"log/slog"
+	"net/http"
 	"os"
-
 	"web-server-yt/internal/apiserver"
 	"web-server-yt/internal/slogger"
 
@@ -32,4 +35,17 @@ func main() {
 
 	_ = s
 	_ = logger
+
+	router := mux.NewRouter()
+	router.HandleFunc("/hello", tester(logger))
+
+	_ = s.Start(router)
+}
+
+func tester(logger *slog.Logger) http.HandlerFunc {
+
+	return func(w http.ResponseWriter, r *http.Request) {
+		logger.Info("Somebody come in!")
+		_, _ = io.WriteString(w, "hi!")
+	}
 }

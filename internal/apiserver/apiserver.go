@@ -1,6 +1,10 @@
 package apiserver
 
-import "log/slog"
+import (
+	"github.com/gorilla/mux"
+	"log/slog"
+	"net/http"
+)
 
 type APIServer struct {
 	config *Config
@@ -14,6 +18,6 @@ func New(config *Config) *APIServer {
 	}
 }
 
-func (s *APIServer) Start() error {
-	return nil
+func (s *APIServer) Start(r *mux.Router) error {
+	return http.ListenAndServe(s.config.BindAddr, r)
 }
