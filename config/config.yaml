@@ -1,3 +1,6 @@
 env: "local"
 
 bind_addr: ":8080"
+
+storage:
+  url: "host=localhost username=postgres password=we13 dbname=rest sslmode=disable"

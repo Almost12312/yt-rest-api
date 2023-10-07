@@ -4,6 +4,7 @@ import (
 	"github.com/ilyakaznacheev/cleanenv"
 	"log"
 	"os"
+	"web-server-yt/internal/storage"
 )
 
 func init() {
@@ -11,8 +12,9 @@ func init() {
 }
 
 type Config struct {
-	BindAddr string `yaml:"bind_addr"`
-	Env      string `env:"ENV" yaml:"env" env=required:"true"`
+	BindAddr string          `yaml:"bind_addr"`
+	Env      string          `env:"ENV" yaml:"env" env=required:"true"`
+	Storage  *storage.Config `yaml:"storage"`
 }
 
 type Env struct {

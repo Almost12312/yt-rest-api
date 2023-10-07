@@ -6,4 +6,4 @@ run:
 brun:
 	go build -v ./cmd/api-server && ./api-server
 
-.DEFAULT_GOAL:=brun
+.DEFAULT_GOAL:=run
